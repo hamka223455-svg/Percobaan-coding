@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coding untuk Ibu - Anime Background</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Background Canvas */
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* di belakang */
+  }
+
+  /* Kotak teks pink */
+  .container {
+    position: relative;
+    background-color: rgba(255,182,193,1); /* pink solid */
+    max-width: 600px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1;
+  }
+
+  h1 { margin-bottom: 20px; }
+  p { font-size: 1.1em; margin-bottom: 25px; }
+  
+  /* Input semi-transparent agar background terlihat */
+  input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ff8da1;
+    margin-bottom: 20px;
+    font-size: 1em;
+    background-color: rgba(255,182,193,0.7); /* semi-transparan */
+    color: #000;
+  }
+
+  button {
+    padding: 10px 25px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff4b5c;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover { background-color: #ff1f3a; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<canvas id="animeBg"></canvas>
+
+<!-- Halaman 1 -->
+<div class="container" id="page1">
+  <h1>Halo!</h1>
+  <p>Hari Valentine itu sangat seru, kan! Tapi jangan lupa, ibu lah yang selalu menyayangi kita. Ayo balas kebaikan ibu kita!</p>
+  <button onclick="nextPage(2)">Yuk ke halaman berikutnya</button>
+</div>
+
+<!-- Halaman 2 -->
+<div class="container hidden" id="page2">
+  <h1>Pengenalan</h1>
+  <p>Halo! Nama aku Hamka, pembuat coding ini. Yuk kita perkenalan!</p>
+  <input type="text" id="nameInput" placeholder="Siapa nama kamu?" required>
+  <br>
+  <button onclick="nextPage(3)">Yuk ke halaman berikutnya</button>
+</div>
+
+<!-- Halaman 3 -->
+<div class="container hidden" id="page3">
+  <h1>Kata Kata Pengantar</h1>
+  <p>Ibu adalah sosok yang selalu hadir tanpa pamrih. Dari kita masih kecil hingga dewasa, ibu selalu memberikan kasih sayang, perhatian, dan pengorbanan yang tiada tara. Setiap senyumannya, setiap pelukan hangatnya, dan setiap nasihat yang ia berikan membentuk kita menjadi pribadi yang lebih baik. Ibu selalu memikirkan kita terlebih dahulu, bahkan ketika dirinya sendiri merasa lelah atau sedih.</p>
+  <p>Kebaikan ibu tidak bisa diukur dengan materi atau hadiah, karena yang paling berharga adalah cinta dan perhatian yang tulus. Sebagai anak, penting bagi kita untuk selalu menghargai setiap pengorbanan dan kehadiran ibu dalam hidup kita. Melalui tindakan sederhana seperti mendengarkan, berbagi cerita, atau sekadar membahagiakan hati ibu, kita dapat menunjukkan rasa terima kasih dan cinta yang tak terhingga.</p>
+  <button onclick="nextPage(4)">Yuk ke halaman berikutnya</button>
+</div>
+
+<!-- Halaman 4 -->
+<div class="container hidden" id="page4">
+  <h1>Bahagiakan Orang Tuamu</h1>
+  <p>Yuk bahagiakan orang tua. Tidak perlu hal besar, cukup sederhana dan membuat mereka bangga!</p>
+  <input type="text" id="giftInput" placeholder="Apa yang ingin kamu berikan untuk membahagiakan orang tua?">
+  <br>
+  <button onclick="nextPage(5)">Halaman berikutnya</button>
+</div>
+
+<!-- Halaman 5 -->
+<div class="container hidden" id="page5">
+  <h1>Makna</h1>
+  <p>Membahagiakan ibu berarti menghargai setiap pengorbanan, perhatian, dan cinta yang ia berikan. Hal sederhana seperti membantu pekerjaan rumah, mendengarkan cerita, atau memberi senyum hangat bisa membuat ibu merasa dicintai.</p>
+  <button onclick="nextPage(6)">Yuk ke halaman berikutnya</button>
+</div>
+
+<!-- Halaman 6 -->
+<div class="container hidden" id="page6">
+  <h1>TERAKHIR!</h1>
+  <p>Soal: Berikan 1 kata untuk ibu mu!</p>
+  <input type="text" id="finalWord" placeholder="Satu kata untuk ibu mu">
+  <br>
+  <button onclick="nextPage(7)">Yuk ke halaman terakhir!</button>
+</div>
+
+<!-- Halaman 7 -->
+<div class="container hidden" id="page7">
+  <h1>Kata Pengantar Terakhir</h1>
+  <p>Terima kasih telah mengikuti halaman ini sampai akhir. Ingatlah, ibu adalah cahaya yang selalu menerangi hidup kita, bahkan di saat-saat tersulit. Kasih sayang ibu tidak pernah berhenti, dan setiap langkah hidup kita selalu didukung oleh doa dan cinta dari ibu. Menghargai dan menyayangi ibu adalah kewajiban dan juga kebahagiaan tersendiri bagi kita sebagai anak.</p>
+  <p>Mari jadikan setiap hari kesempatan untuk membahagiakan ibu. Tidak perlu hal besar, cukup dengan perhatian sederhana, senyum hangat, atau kata-kata penuh kasih. Dengan menghargai dan mencintai ibu, kita tidak hanya membalas kebaikannya, tetapi juga belajar menjadi pribadi yang lebih baik, penyayang, dan penuh rasa syukur.</p>
+  <button onclick="closePage()">Yuk kita akhiri coding ini</button>
+</div>
+
+<script>
+// Navigasi halaman
+function nextPage(pageNumber){
+  if(pageNumber===3){
+    let name=document.getElementById('nameInput').value.trim();
+    if(name===""){ alert("Tolong isi nama kamu dulu ya!"); return; }
+  }
+  if(pageNumber===5){
+    let gift=document.getElementById('giftInput').value.trim();
+    if(gift===""){ alert("Tolong isi jawabanmu dulu ya!"); return; }
+  }
+  if(pageNumber===7){
+    let final=document.getElementById('finalWord').value.trim();
+    if(final===""){ alert("Tolong isi satu kata untuk ibu mu!"); return; }
+  }
+  for(let i=1;i<=7;i++){ document.getElementById('page'+i).classList.add('hidden'); }
+  document.getElementById('page'+pageNumber).classList.remove('hidden');
+}
+
+function closePage(){
+  alert("Terima kasih! Coding akan ditutup.");
+  window.close();
+}
+
+// Anime Background Canvas
+const canvas = document.getElementById('animeBg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let sunY = 100;
+let sunDir = 0.05;
+const tree = {x: canvas.width*0.7, y: canvas.height*0.6, sway: 0, swayDir: 0.01};
+let clouds = [];
+for(let i=0;i<5;i++){ clouds.push({x: Math.random()*canvas.width, y: 50+Math.random()*50, speed: 0.2+Math.random()*0.3}); }
+
+let animationPaused = false;
+document.querySelectorAll('input').forEach(input=>{
+  input.addEventListener('focus', ()=> animationPaused = true); // pause animasi saat mengetik
+  input.addEventListener('blur', ()=> animationPaused = false);
+});
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Langit sunset
+  let grad = ctx.createLinearGradient(0,0,0,canvas.height);
+  grad.addColorStop(0,'#ff9a9e'); 
+  grad.addColorStop(0.5,'#fad0c4'); 
+  grad.addColorStop(1,'#fbc2eb'); 
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // Matahari
+  ctx.beginPath();
+  ctx.arc(canvas.width*0.3, sunY, 50, 0, Math.PI*2);
+  ctx.fillStyle = '#FFD700';
+  ctx.fill();
+  if(!animationPaused){ sunY += sunDir; if(sunY>canvas.height*0.5 || sunY<100) sunDir*=-1; }
+
+  // Laut
+  ctx.fillStyle = '#6ec6ff';
+  ctx.fillRect(0, canvas.height*0.7, canvas.width, canvas.height*0.3);
+  for(let i=0;i<canvas.width;i+=50){
+    ctx.beginPath();
+    ctx.arc(i, canvas.height*0.7+10*Math.sin(Date.now()/500+i/50),25,0,Math.PI,true);
+    ctx.fillStyle='#7ec8ff';
+    ctx.fill();
+  }
+
+  // Pohon dan karakter hanya digerakkan saat animasi tidak di-pause
+  if(!animationPaused){
+    tree.sway += tree.swayDir;
+    if(tree.sway>0.1||tree.sway<-0.1) tree.swayDir*=-1;
+    ctx.save();
+    ctx.translate(tree.x,tree.y);
+    ctx.rotate(tree.sway);
+    ctx.fillStyle='#4b3621';
+    ctx.fillRect(-10,0,20,-150);
+    ctx.fillStyle='#2e7d32';
+    ctx.beginPath();
+    ctx.arc(0,-160,50,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+
+    // Karakter bersandar pohon
+    ctx.save();
+    ctx.translate(tree.x-40, tree.y-80);
+    ctx.fillStyle='#ffcc99';
+    ctx.fillRect(0,-50,20,50); 
+    ctx.fillStyle='#000';
+    ctx.fillRect(5,-50,10,10); 
+    ctx.restore();
+  }
+
+  // Awan tetap bergerak meski pause
+  clouds.forEach(cloud=>{
+    ctx.beginPath();
+    ctx.arc(cloud.x, cloud.y, 30,0,Math.PI*2);
+    ctx.arc(cloud.x+20, cloud.y+10,25,0,Math.PI*2);
+    ctx.arc(cloud.x-20, cloud.y+10,25,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.8)';
+    ctx.fill();
+    if(!animationPaused){ cloud.x += cloud.speed; if(cloud.x>canvas.width+50) cloud.x=-50; }
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener('resize',()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
+</script>
+</body>
+</html>
